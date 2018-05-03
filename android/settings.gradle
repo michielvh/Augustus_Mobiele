@@ -1,0 +1,3 @@
+rootProject.name = 'UCLL_Mobiele'
+
+include ':app'
