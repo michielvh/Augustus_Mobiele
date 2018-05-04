@@ -1,4 +1,6 @@
-
+const AUGUSTUS={
+  
+}
  const init = {
    expenses: [{ id: 0, amount:'',  description: 'drank dag 1', whopaid: 'jan', tripID: ''}]
  }
