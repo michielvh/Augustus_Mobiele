@@ -68,7 +68,8 @@ import Item from '../components/Item';
   const mapStateToProps = (state) => {
     return {
       items: state.expense.item,
-      expense: state.expense
+      expense: state.expense,
+      stateee: state
       //trips: state.trips.trips
     };
   };

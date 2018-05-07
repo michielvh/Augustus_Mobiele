@@ -4,7 +4,7 @@ export const addItem = (kostItemId,amount,description,betaaldDoor,betaaldVoor,ev
       payload: {
         
         kostItemId,
-      amount,  
+        amount:int(amount),  
       description, 
       betaaldDoor, 
       betaaldVoor,

@@ -1,6 +1,6 @@
 const init = {
     
-   items:[{  kostItemId:'id toevoegen aan expense in action en in app alle kostitemIDs ophalen en amounts optellen',
+   items:[{  kostItemId:0,
       amount:1,  description: 'drank dag 1', betaaldDoor:'jan/ofID', betaaldVoor:[{persoon:'jan/id'},{persoon:'naam/id'}],
     eventueelExpenseID:'en dan '}]
       
