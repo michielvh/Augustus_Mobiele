@@ -21,10 +21,10 @@ import { connect } from 'react-redux';
        <Text style={styles.titleText} >A list of all the trips: </Text>
         { this.trips().map((trip) => {
           return (
-            <TouchableHighlight 
+            <TouchableHighlight key={trip.id}
               onPress={() => this.props.navigation.navigate('TripDetails', { trip })}
             >
-              <Text key={trip.id}> {trip.text}</Text>
+              <Text > {trip.text}</Text>
             </TouchableHighlight>
          );
         })}

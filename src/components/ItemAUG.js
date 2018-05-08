@@ -11,7 +11,7 @@ class ItemAUG extends Component {
         this.state = {
             kostItemId: 0,
             description: '',
-            amount: 1,
+            amount: '',
             betaaldDoor: 'jan',
             betaaldVoor: 'alle',
             eventueelExpenseID: '',
@@ -23,15 +23,25 @@ class ItemAUG extends Component {
     verwijderPersoonVanBetalingen(e){
         var personen=this.state.betaaldVoorPersonen;
         var x=personen.indexOf(e);
-        personen[x]=personen.pop();
+        if(personen.length===1){
+            personen.pop();
+        }else{
+        personen[x]=personen.pop(); //index van overbodige waarde wordt vervangen met laatste waarde
+        }
         this.setState({ betaaldVoorPersonen: personen });
     }
     betalingVoorPersonen(text) {
         var personen=this.state.betaaldVoorPersonen;
+        if(text==='alle'){
+            personen=[];
+        }
+        if(personen.indexOf(text)>=0){}else{
         personen.push(text);
+        this.setState({ betaaldVoorPersonen: personen });
+        }
+    
         this.setState({ betaaldVoor: text });
 
-        this.setState({ betaaldVoorPersonen: personen });
         //betaaldvoorpersonen aflopen in render(),met touchable om weg te doen
 
     }
@@ -48,7 +58,14 @@ class ItemAUG extends Component {
         this.setState({ amount: newText })
     }
     additem() {
-        this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor, this.state.betaaldVoorPersonen,this.state.eventueelExpenseID);
+        var personen2=[];
+        if(this.state.betaaldVoor==='alle'){
+            
+            this.personen().map((e) => { personen2.push(e.naam) });
+            this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor,personen2,this.state.eventueelExpenseID);
+        }else{
+        this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor,this.state.betaaldVoorPersonen,this.state.eventueelExpenseID);
+        }
      //   this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor, this.state.betaaldVoor,this.state.eventueelExpenseID);
 
         //  this.props.onAddItemToExpense(this.state.kostItemId,this.state.eventueelExpenseID);
@@ -97,8 +114,8 @@ class ItemAUG extends Component {
                 </Picker> */}
         {this.state.betaaldVoorPersonen.map(e =>{
             
-        return ( <TouchableHighlight onPress={() => this.verwijderPersoonVanBetalingen(e)}>
-<Text>{e}</Text>
+        return ( <TouchableHighlight key={e} onPress={() => this.verwijderPersoonVanBetalingen(e)}>
+<Text>{e}                  - verwijder -</Text>
       </TouchableHighlight>
          );
             
