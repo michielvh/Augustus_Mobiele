@@ -14,15 +14,31 @@ class ItemAUG extends Component {
             amount: 1,
             betaaldDoor: 'jan',
             betaaldVoor: 'alle',
-            eventueelExpenseID: ''
+            eventueelExpenseID: '',
+            betaaldVoorPersonen: []
 
 
         };
     }
+    verwijderPersoonVanBetalingen(e){
+        var personen=this.state.betaaldVoorPersonen;
+        var x=personen.indexOf(e);
+        personen[x]=personen.pop();
+        this.setState({ betaaldVoorPersonen: personen });
+    }
+    betalingVoorPersonen(text) {
+        var personen=this.state.betaaldVoorPersonen;
+        personen.push(text);
+        this.setState({ betaaldVoor: text });
+
+        this.setState({ betaaldVoorPersonen: personen });
+        //betaaldvoorpersonen aflopen in render(),met touchable om weg te doen
+
+    }
 
     onChange(text) {
         let newText = '';
-        let numbers = '0123456789';
+        let numbers = '0123456789.';
 
         for (var i = 0; i < text.length; i++) {
             if (numbers.indexOf(text[i]) > -1) {
@@ -32,8 +48,10 @@ class ItemAUG extends Component {
         this.setState({ amount: newText })
     }
     additem() {
-        this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor, this.state.betaaldVoor,this.state.eventueelExpenseID);
-        this.props.onAddItemToExpense(this.state.kostItemId,this.state.eventueelExpenseID);
+        this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor, this.state.betaaldVoorPersonen,this.state.eventueelExpenseID);
+     //   this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor, this.state.betaaldVoor,this.state.eventueelExpenseID);
+
+        //  this.props.onAddItemToExpense(this.state.kostItemId,this.state.eventueelExpenseID);
         // this.props.navigation.goBack(null);
     }
     personen() {
@@ -67,11 +85,25 @@ class ItemAUG extends Component {
                 <Text> betaald voor:</Text>
                 <Picker
                     selectedValue={this.state.betaaldVoor}
-                    onValueChange={(itemValue, itemIndex) => this.setState({ betaaldVoor: itemValue })}>
+                    onValueChange={(itemValue, itemIndex) => this.betalingVoorPersonen( itemValue )}>
                     <Picker.Item label="Alle" value="alle" />
                     {this.personen().map((personen) => { return <Picker.Item key={personen.naam} label={personen.naam} value={personen.naam} /> })}
                 </Picker>
+                {/* <Picker
+                    selectedValue={this.state.betaaldVoor}
+                    onValueChange={(itemValue, itemIndex) => this.setState({ betaaldVoor: itemValue })}>
+                    <Picker.Item label="Alle" value="alle" />
+                    {this.personen().map((personen) => { return <Picker.Item key={personen.naam} label={personen.naam} value={personen.naam} /> })}
+                </Picker> */}
+        {this.state.betaaldVoorPersonen.map(e =>{
+            
+        return ( <TouchableHighlight onPress={() => this.verwijderPersoonVanBetalingen(e)}>
+<Text>{e}</Text>
+      </TouchableHighlight>
+         );
+            
 
+        })}
                 <Button
                     onPress={() => this.additem()}
                     title="Add Kost" />

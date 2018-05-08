@@ -3,6 +3,7 @@ import OverviewPage from '../pages/OverviewPage';
 import BillsPage from '../pages/BillsPage';
 import TripStack from './TripsNavigator';
 import ExpensePage from '../pages/ExpensePageAUG';
+import TripStackAUG from './TripsNavigatorAUG';
 
 const MainNavigator = TabNavigator({
         Overview: {
@@ -17,6 +18,10 @@ const MainNavigator = TabNavigator({
         ExpensePage: {
             screen: ExpensePage
         },
+        TripStackAUG: {
+            screen: TripStackAUG
+        },
+
 });
 
 export default MainNavigator;

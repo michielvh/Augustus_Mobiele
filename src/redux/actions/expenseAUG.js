@@ -4,7 +4,7 @@ export const addItem = (kostItemId,amount,description,betaaldDoor,betaaldVoor,ev
       payload: {
         
         kostItemId,
-        amount:int(amount),  
+        amount:double(amount),  
       description, 
       betaaldDoor, 
       betaaldVoor,
@@ -56,5 +56,6 @@ export const updateItem = (users) => {
     };
 }
 const int=(x) => Number.parseInt(x);
+const double=(x) => Number.parseFloat(x);
 
 

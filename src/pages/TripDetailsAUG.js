@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, Text, TouchableHighlight, Button } from 'react-native';
 
-class TripPage extends Component {
+class TripDetailsAUG extends Component {
     
     trips() {
 
@@ -48,4 +48,4 @@ const mapStateToProps = (state) => {
     };
 };
  
-export default connect(mapStateToProps)(TripPage);
+export default connect(mapStateToProps)(TripDetailsAUG);
