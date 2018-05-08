@@ -23,11 +23,11 @@ export const addItemToExpense = (itemID,expenseID) => {
       }
     };
 }
-export const createNewExpense = (expenseID) => {
+export const createNewExpense = (expenseID,amount,description,tripID) => {
     return {
       type: 'CREATE_NEW_EXPENSE',
       payload: {
-        expenseID 
+        expenseID ,amount : double(amount),description,tripID
       }
     };
 }
@@ -57,5 +57,5 @@ export const updateItem = (users) => {
 }
 const int=(x) => Number.parseInt(x);
 const double=(x) => Number.parseFloat(x);
-
+const uid = () => Math.random().toString(34).slice(2);
 

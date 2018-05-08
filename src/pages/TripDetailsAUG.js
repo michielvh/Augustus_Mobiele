@@ -18,7 +18,10 @@ class TripDetailsAUG extends Component {
         }
         return Object.keys(expensess).map(key => expensess[key])
       }   
-
+fix(trip,n){
+    this.props.navigation.navigate('NewExpense', { trip })
+    navigation={n};
+}
     render() {
         const trip = this.props.navigation.state.params.trip;
         console.log(trip);
@@ -33,7 +36,9 @@ class TripDetailsAUG extends Component {
                     );   
                 })}
                 <Button 
+                //    onPress={() => this.fix(trip,this.props.navigation)} 
                     onPress={() => this.props.navigation.navigate('NewExpense', { trip })} 
+                
                     title='New Expense'
                     navigation={this.props.navigation}
                 />

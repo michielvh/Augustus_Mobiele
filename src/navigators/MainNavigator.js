@@ -15,9 +15,9 @@ const MainNavigator = TabNavigator({
         Bills: {
             screen: BillsPage
         },
-        ExpensePage: {
+       /*  ExpensePage: {
             screen: ExpensePage
-        },
+        }, */
         TripStackAUG: {
             screen: TripStackAUG
         },

@@ -4,6 +4,8 @@ import TripDetailsAUG from '../pages/TripDetailsAUG';
 import BillForm from '../components/BillForm';
 import AddTrip from '../pages/AddTripPage';
 import ExpensePage from '../pages/ExpensePageAUG';
+import ItemAUG from '../components/ItemAUG';
+
 
 
 const TripsNavigatorAUG = StackNavigator({
@@ -24,7 +26,17 @@ const TripsNavigatorAUG = StackNavigator({
     },
     
     NewExpense: {
-        screen: ExpensePage
+        screen: ExpensePage,
+         navigationOptions: {
+            title: 'Register Expense',
+        },
+    },
+
+    NewItem: {
+        screen: ItemAUG,
+        navigationOptions: {
+            title: 'Add Item',
+        },
     },
 });
 

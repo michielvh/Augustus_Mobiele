@@ -70,6 +70,8 @@ class ItemAUG extends Component {
 
         //  this.props.onAddItemToExpense(this.state.kostItemId,this.state.eventueelExpenseID);
         // this.props.navigation.goBack(null);
+        this.props.navigation.dispatch(NavigationActions.back());
+  
     }
     personen() {
 
@@ -78,7 +80,7 @@ class ItemAUG extends Component {
     }
     render() {
         console.log(this.props);
-
+       
 
         return (
             <View><Text>Beschrijving item</Text>
