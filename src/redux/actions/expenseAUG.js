@@ -23,11 +23,11 @@ export const addItemToExpense = (itemID,expenseID) => {
       }
     };
 }
-export const createNewExpense = (expenseID,amount,description,tripID) => {
+export const createNewExpense = (expenseID,amount,description,tripID,categorie,date,items) => {
     return {
       type: 'CREATE_NEW_EXPENSE',
       payload: {
-        expenseID ,amount : double(amount),description,tripID
+        expenseID ,amount : double(amount),description,tripID,categorie,date,items
       }
     };
 }

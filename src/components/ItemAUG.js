@@ -66,12 +66,14 @@ class ItemAUG extends Component {
         }else{
         this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor,this.state.betaaldVoorPersonen,this.state.eventueelExpenseID);
         }
+        this.props.onAddItemToExpense(this.state.kostItemId,this.props.navigation.state.params);
      //   this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor, this.state.betaaldVoor,this.state.eventueelExpenseID);
 
         //  this.props.onAddItemToExpense(this.state.kostItemId,this.state.eventueelExpenseID);
-        // this.props.navigation.goBack(null);
-        this.props.navigation.dispatch(NavigationActions.back());
-  
+         this.props.navigation.goBack(null);
+      
+      //  this.props.navigation.dispatch(NavigationActions.back( key: this.props.navigation.state.params));
+      //  this.props.navigation.navigate('NewExpense',  this.props.navigation.state.params );
     }
     personen() {
 

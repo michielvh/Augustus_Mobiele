@@ -1,7 +1,7 @@
 import { List, Map } from 'immutable';
 
  const init = {
-   personen:[{naam:'jan'},{naam:'loe'}],
+   personen:[{naam:'jan'},{naam:'loe'},{naam:'fred'},{naam:'barry'},{naam:'kees'}],
   
  }
  const reducer = (state=init, action) => {

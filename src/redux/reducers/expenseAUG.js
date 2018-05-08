@@ -1,7 +1,7 @@
 
  const init = {
      expenses:[{
-    id:'', description: 'drank dag2', amount: 5, datum:'datum',currency:'currencyID',
+    expenseID:'', description: 'drank dag2', amount: 5, datum:'datum',currency:'currencyID',categorie:'',
      items:[{ itemId:'id toevoegen aan expense in action en in app alle kostitemIDs ophalen en amounts optellen'},
     {itemId:'id'}]
      }]
@@ -10,20 +10,59 @@
 
   const reducer = (state=init, action) => {
   switch(action.type) {
-    case 'ADD_ITEM_TO_EXPENSE':
+    case 'CREATE_NEW_EXPENSE':
+     // state.amount=state.amount+action.payload.amount;
+        return {...state,
+         expenses: [...state.expenses, action.payload]};
+        
+    case 'ADD_ITEM_TO_EXPENSE2':
     //state.map (zie hieronder),zoeken naar state.expenses , dan expenseID zoeken (eerst createexpense doen wel)
     //en dan zoeken naar juiste expenseID, en dan itemID aan lijst toevoegen
     state.amount=state.amount+action.payload.amount;
         return {...state,
          item: [...state.item, action.payload]};
         
-    case 'UPDATE_ITEM':
-        return state.map(t => {
-            if(t.get('id') === action.payload) {
-                return t.update('isFinished', isFinished => !isFinished);
+    case 'ADD_ITEM_TO_EXPENSE':
+       /*  return state.expenses.map(t => {
+            if(t.expenseID === action.payload.expenseID) {
+             //   return t.update('items', t.items.push(action.payload.itemID) );
+                 t.items.push(action.payload.itemID) 
+
               } 
               return t;
+        }); 
+      var x=  state.expenses.map(function(key, val, array){
+        
+    if(key.expenseID===action.payload.expenseID){
+        return key;
+    }
+            
+            })
+            var l=state.expenses;
+            l[x].items.push(action.payload.itemID);
+          return  {...state,
+                expenses: [l]};
+        
+        */
+        for(var x of state.expenses){
+            if(x.expenseID===action.payload.expenseID){
+                x.items.push(action.payload.itemID);
+            }
+        }
+        return {...state,
+            expenses: [...state.expenses]}
+
+       /*  state.expenses.map(t => {
+            if(t.expenseID === action.payload.expenseID) {
+             //   return t.update('items', t.items.push(action.payload.itemID) );
+                 t.items.push(action.payload.itemID) 
+
+              } 
+             // return {...state.expenses,expenses:t};
+            return {expenses:state.expenses};
         });
+       // return {...state,expenses:[x]
+           };  */
         case 'ADD_BETALING':
         state.amount=state.amount-action.payload.amount;
         return {...state,

@@ -1,7 +1,7 @@
 import { List, Map } from 'immutable';
 
  const init = {
-   categories:['Food','Taxi','clubs'],
+   categories:['Overige','Food','Taxi','Clubs'],
   
  }
  const reducer = (state=init, action) => {
