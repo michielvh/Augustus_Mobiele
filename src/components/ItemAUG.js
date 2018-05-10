@@ -9,12 +9,12 @@ class ItemAUG extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            kostItemId: 0,
+            kostItemId: uid(),
             description: '',
             amount: '',
             betaaldDoor: 'jan',
             betaaldVoor: 'alle',
-            eventueelExpenseID: '',
+            expenseID: '',
             betaaldVoorPersonen: []
 
 
@@ -62,9 +62,9 @@ class ItemAUG extends Component {
         if(this.state.betaaldVoor==='alle'){
             
             this.personen().map((e) => { personen2.push(e.naam) });
-            this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor,personen2,this.state.eventueelExpenseID);
+            this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor,personen2,this.props.navigation.state.params);
         }else{
-        this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor,this.state.betaaldVoorPersonen,this.state.eventueelExpenseID);
+        this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor,this.state.betaaldVoorPersonen,this.props.navigation.state.params);
         }
         this.props.onAddItemToExpense(this.state.kostItemId,this.props.navigation.state.params);
      //   this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor, this.state.betaaldVoor,this.state.eventueelExpenseID);
@@ -147,10 +147,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAddItem: (kostItemId,amount, description, betaaldDoor, betaaldVoor,eventueelExpenseID) => { dispatch(addItem(kostItemId,amount, description, betaaldDoor, betaaldVoor,eventueelExpenseID)); },
+        onAddItem: (kostItemId,amount, description, betaaldDoor, betaaldVoor,expenseID) => { dispatch(addItem(kostItemId,amount, description, betaaldDoor, betaaldVoor,expenseID)); },
    
         onAddItemToExpense: (itemID,expenseID) => { dispatch(addItemToExpense(itemID,expenseID));}
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemAUG);
+const  uid = () => Math.random().toString(34).slice(2);

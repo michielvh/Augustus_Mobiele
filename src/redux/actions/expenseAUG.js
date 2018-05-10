@@ -1,14 +1,14 @@
-export const addItem = (kostItemId,amount,description,betaaldDoor,betaaldVoor,eventueelExpenseID) => {
+export const addItem = (kostItemId,amount,description,betaaldDoor,betaaldVoor,expenseID) => {
     return {
       type: 'ADD_ITEM',
       payload: {
         
-        kostItemId,
+        itemID:kostItemId,
         amount:double(amount),  
       description, 
       betaaldDoor, 
       betaaldVoor,
-    eventueelExpenseID
+    expenseID
         
       }
     };

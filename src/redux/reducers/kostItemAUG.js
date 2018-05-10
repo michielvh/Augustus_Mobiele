@@ -1,8 +1,8 @@
 const init = {
     
-   items:[{  kostItemId:0,
+   items:[{  itemID:0,
       amount:1,  description: 'drank dag 1', betaaldDoor:'jan/ofID', betaaldVoor:[{persoon:'jan/id'},{persoon:'naam/id'}],
-    eventueelExpenseID:'en dan '}]
+    expenseID:'en dan '}]
       
  }
 

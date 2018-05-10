@@ -9,7 +9,7 @@ class ExpenseAUG extends Component {
         super(props);
         this.state = {
             expenseID: uid(),
-amount : '0',
+amount : '',
 description:'',
 categorie:'Overige',
 date:today(new Date()),
@@ -37,7 +37,21 @@ created: false,
         this.props.navigation.navigate('NewItem',  this.state.expenseID );
     }
 
+    bereken(){
+        
+    }
     render() {
+        var bedragske=0;
+    /*     var x=0;
+        var xxx=this.props.items.map(function(key,val,array){
+            
+            if(key.expenseID===this.state.expenseID){
+             x+=key.amount;
+         }
+             return x;
+            
+         }) */
+        // console.log(xxx);
         console.log(this.props.navigation.state.params);
         console.log(this.props.categories);
         console.log(this.state.categorie);
@@ -47,14 +61,29 @@ created: false,
         return (
             <View><Text>Totaal Bedrag: </Text>
                <TextInput 
-                  onChangeText={(text) => this.onChange({ text})}
+                  onChangeText={(text) => this.onChange(text)}
                   value={this.state.amount} //NAAR props.amount veranderen?
                 />
                 
                 <Text>Currencylijst adden</Text>
                 <Text>Al afgerekend:</Text>
                 <Text>Resterend:</Text>
+{this.props.items.map(function(key,val,array){
+            if(key.expenseID){  
+                bedragske+=key.amount;
+                //
+                //DIT IS OPLOSSING!!!
+                //CHECK OF EXPENSEID BESTAAT!!
+                //
+                return <Text>{key.expenseID} : {bedragske}</Text>
 
+            }
+    /* if(key.expenseID===this.state.expenseID){
+     x+=key.amount;
+ }
+     return x; */
+    
+ })}
                 <Text>Omschrijving: </Text>
                <TextInput 
                   onChangeText={(text) => this.setState({ description:text})}
@@ -86,10 +115,12 @@ created: false,
 }
  const mapStateToProps = (state) => {
     return {
-      items: state.expense.item,
-      expense: state.expense,
+     // items: state.expense.item,
+      //expense: state.expense,
       stateee: state,
-      categories: state.categories.categories
+      categories: state.categories.categories,
+      expenses: state.expenseAUG.expenses,
+        items: state.kostItemAUG.items,
       //trips: state.trips.trips
     };
   };
