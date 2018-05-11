@@ -37,8 +37,9 @@ created: false,
         this.props.navigation.navigate('NewItem',  this.state.expenseID );
     }
 
-    bereken(){
+    bereken(lala){
        var xoxox=0;
+       console.log(lala);
         for(let x of this.props.items){
             xoxox+=x.amount; //nog beter, net nog expenseID check toevoegen & check of items al bestaat
         }
@@ -56,6 +57,26 @@ created: false,
                }});
                return bedragsken;
     }
+    fixLijst(xoxo){
+      return  this.props.items.map(function(key,val,array){
+            if(key.expenseID){
+                if(key.expenseID===xoxo){
+            //    if(key.expenseID=  this.props.navigation.state.params){
+                        //
+                        //DIT IS OPLOSSING!!!
+                        //CHECK OF EXPENSEID BESTAAT!!
+                        //
+                        return <Text>{key.description} TouchableHighlight van maken,onpress terug naar edit met info ingeladen</Text>
+        
+                }    }//}
+        
+            /* if(key.expenseID===this.state.expenseID){
+             x+=key.amount;
+         }
+             return x; */
+            
+         })}
+    
     render() {
       
     /*     var x=0;
@@ -83,24 +104,9 @@ created: false,
                 
                 <Text>Currencylijst adden</Text>
                 <Text>Al afgerekend: {this.bereken2()} </Text> 
-                <Text>Resterend: {this.bereken()}</Text>
-{this.props.items.map(function(key,val,array){
-            if(key.expenseID){  
-               
-                //
-                //DIT IS OPLOSSING!!!
-                //CHECK OF EXPENSEID BESTAAT!!
-                //
-                return <Text>{key.description} TouchableHighlight van maken,onpress terug naar edit met info ingeladen</Text>
+                <Text>Resterend: {this.bereken( this.props.navigation.state.params)}</Text>
+                {this.fixLijst(this.state.expenseID) /*MOET IN APARTE FUNCTIONCALL,ZEGT ANDERS DAT STATEEXPENSE UNDEFINED IS=>ERROR*/}
 
-            }
-
-    /* if(key.expenseID===this.state.expenseID){
-     x+=key.amount;
- }
-     return x; */
-    
- })}
                 <Text>Omschrijving: </Text>
                <TextInput 
                   onChangeText={(text) => this.setState({ description:text})}
