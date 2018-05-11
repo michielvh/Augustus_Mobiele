@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text, TouchableHighlight, Button } from 'react-native';
-
+import { ScrollView, Text, TouchableHighlight, Button, View } from 'react-native';
+import Totalen from '../components/Totalen';
 class TripDetailsAUG extends Component {
     constructor(props) {
         super(props);
@@ -20,9 +20,11 @@ class TripDetailsAUG extends Component {
                   <TouchableHighlight key={key.expenseID}
                     onPress={() => nav.navigate('EditExpense', { expense:key,trip:trip })}
                   >
-                    <Text > {key.description}</Text>
+                    <Text > {key.description} : {key.amount} flappe</Text>
                   </TouchableHighlight>
+
                );
+               
               }
           })
         }
@@ -69,6 +71,9 @@ fix(trip,n){
                     title='New Expense'
                     navigation={this.props.navigation}
                 />
+                <View>
+<Totalen expense={this.props.expenses[0]}/>
+</View>
             </ScrollView>
         );
     }
