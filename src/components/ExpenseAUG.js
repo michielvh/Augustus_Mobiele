@@ -38,10 +38,26 @@ created: false,
     }
 
     bereken(){
-        
+       var xoxox=0;
+        for(let x of this.props.items){
+            xoxox+=x.amount; //nog beter, net nog expenseID check toevoegen & check of items al bestaat
+        }
+       return xoxox;
+    }
+//OF
+    bereken2(){
+          var bedragsken=0;
+          this.props.items.map(function(key,val,array){
+            //  var x=0;
+               if(key.expenseID){  
+                  bedragsken+= key.amount;
+                   
+   
+               }});
+               return bedragsken;
     }
     render() {
-        var bedragske=0;
+      
     /*     var x=0;
         var xxx=this.props.items.map(function(key,val,array){
             
@@ -66,18 +82,19 @@ created: false,
                 />
                 
                 <Text>Currencylijst adden</Text>
-                <Text>Al afgerekend:</Text>
-                <Text>Resterend:</Text>
+                <Text>Al afgerekend: {this.bereken2()} </Text> 
+                <Text>Resterend: {this.bereken()}</Text>
 {this.props.items.map(function(key,val,array){
             if(key.expenseID){  
-                bedragske+=key.amount;
+               
                 //
                 //DIT IS OPLOSSING!!!
                 //CHECK OF EXPENSEID BESTAAT!!
                 //
-                return <Text>{key.expenseID} : {bedragske}</Text>
+                return <Text>{key.description} TouchableHighlight van maken,onpress terug naar edit met info ingeladen</Text>
 
             }
+
     /* if(key.expenseID===this.state.expenseID){
      x+=key.amount;
  }
