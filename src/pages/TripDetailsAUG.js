@@ -18,7 +18,7 @@ class TripDetailsAUG extends Component {
                  
               return (
                   <TouchableHighlight key={key.expenseID}
-                    onPress={() => nav.navigate('NewExpense', { expense:key,trip:trip })}
+                    onPress={() => nav.navigate('EditExpense', { expense:key,trip:trip })}
                   >
                     <Text > {key.description}</Text>
                   </TouchableHighlight>

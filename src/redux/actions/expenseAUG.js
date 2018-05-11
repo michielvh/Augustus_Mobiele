@@ -59,6 +59,15 @@ export const updateItem = (kostItemId,amount,description,betaaldDoor,betaaldVoor
   };
 }
 
+export const updateExpense = (expenseID,amount,description,tripID,categorie,date,items) => {
+  return {
+    type: 'UPDATE_EXPENSE',
+    payload: {
+      expenseID ,amount : double(amount),description,tripID,categorie,date,items
+    }
+  };
+}
+
 const int=(x) => Number.parseInt(x);
 const double=(x) => Number.parseFloat(x);
 const uid = () => Math.random().toString(34).slice(2);

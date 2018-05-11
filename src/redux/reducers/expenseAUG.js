@@ -67,6 +67,22 @@
         state.amount=state.amount-action.payload.amount;
         return {...state,
            betaling: [...state.betaling, action.payload]};
+
+           case 'UPDATE_EXPENSE':
+        
+
+           for(var x of state.expenses){
+             if(x.expenseID===action.payload.expenseID){
+               //state.items.pop(x)
+                // x.items.push(action.payload.itemID);
+                x.amount=action.payload.amount;
+                x.categorie=action.payload.categorie;
+                x.items=action.payload.items;
+                x.description=action.payload.description;
+             }
+         }
+         return {...state,
+             expenses: [...state.expenses]};
     default:
       return state;
   }

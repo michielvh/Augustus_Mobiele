@@ -31,11 +31,23 @@ const TripsNavigatorAUG = StackNavigator({
             title: 'Register Expense',
         },
     },
+    EditExpense: {
+        screen: ExpensePage,
+         navigationOptions: {
+            title: 'Edit Expense',
+        },
+    },
 
     NewItem: {
         screen: ItemAUG,
         navigationOptions: {
             title: 'Add Item',
+        },
+    },
+    EditItem: {
+        screen: ItemAUG,
+        navigationOptions: {
+            title: 'Edit Item',
         },
     },
 });

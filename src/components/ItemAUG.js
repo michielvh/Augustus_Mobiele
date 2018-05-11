@@ -15,8 +15,8 @@ class ItemAUG extends Component {
             betaaldDoor: 'jan',
             betaaldVoor: 'alle',
             expenseID: '',
-            betaaldVoorPersonen: []
-
+            betaaldVoorPersonen: [],
+            buttonTitle: 'ADD KOST'
 
         };
     }
@@ -32,6 +32,8 @@ class ItemAUG extends Component {
                 this.setState({betaaldVoor: item.betaaldVoor});
                 this.setState({expenseID: item.expenseID});
                 this.setState({betaaldVoorPersonen: item.betaaldVoor});
+                this.setState({buttonTitle: 'EDIT KOST'});
+
             }
     }
     verwijderPersoonVanBetalingen(e){
@@ -147,7 +149,7 @@ class ItemAUG extends Component {
         })}
                 <Button
                     onPress={() => this.additem()}
-                    title="Add Kost" /*hier een if doen om te updaten of toe te voegen*//>
+                    title={this.state.buttonTitle}/*hier een if doen om te updaten of toe te voegen*//>
 
 
 

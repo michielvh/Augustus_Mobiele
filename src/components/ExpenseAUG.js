@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {  Text, TextInput, View, Button,Picker,TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
-import { createNewExpense } from '../redux/actions/expenseAUG';
+import { createNewExpense,updateExpense } from '../redux/actions/expenseAUG';
 
 
 class ExpenseAUG extends Component {
@@ -27,6 +27,16 @@ created: false,
             }
         }
         this.setState({ amount: newText })
+    }
+    updateExpense(){
+        if(this.props.navigation.state.params.expense){
+            this.props.onUpdateExpense(this.state.expenseID,this.state.amount,this.state.description,this.props.navigation.state.params.trip.id,this.state.categorie,this.state.date,this.state.items);
+
+        }
+        if(this.state.created===true){
+            this.props.navigation.goBack(null);
+        }
+       
     }
 
     createNewExpense(){
@@ -73,8 +83,8 @@ created: false,
                         //DIT IS OPLOSSING!!!
                         //CHECK OF EXPENSEID BESTAAT!!
                         //
-                        return <TouchableHighlight key={key.itemID} onPress={() => nav.navigate('NewItem',  {item:key} )}> 
-                            <Text>{key.description} TouchableHighlight van maken,onpress terug naar edit met info ingeladen</Text>
+                        return <TouchableHighlight key={key.itemID} onPress={() => nav.navigate('EditItem',  {item:key} )}> 
+                            <Text>{key.description} : {key.amount}</Text>
                             </TouchableHighlight>
         
                 }    }//}
@@ -98,6 +108,7 @@ created: false,
                 this.setState({description: expense.description});
                 this.setState({date: expense.date});
                 this.setState({categorie: expense.categorie});
+               // this.props.screenProps.setTitle('Dashboard');
             }
          }
 
@@ -155,7 +166,10 @@ created: false,
                this.createNewExpense() }
                 title='+ onderverdeling'
                 navigation={this.props.navigation}/>
-               
+               <Button  onPress={() => //this.props.navigation.navigate('NewExpense', { trip })} 
+               this.updateExpense() }
+                title='rond rekening ad'
+                navigation={this.props.navigation}/>
            </View>
         );
     }
@@ -175,7 +189,9 @@ created: false,
   const mapDispatchToProps = (dispatch) => {
       return {
           onAddExpense: (expenseID,amount,description,tripID,categorie,date,items) => { dispatch(createNewExpense(expenseID,amount,description,tripID,categorie,date,items)); },
-          onAddExpenseObject: (expense,tripID) => { dispatch(addExpenseObject(expense,tripID)); }
+          onAddExpenseObject: (expense,tripID) => { dispatch(addExpenseObject(expense,tripID)); },
+          onUpdateExpense: (expenseID,amount,description,tripID,categorie,date,items) => { dispatch(updateExpense(expenseID,amount,description,tripID,categorie,date,items)); },
+
     };
   };
   export default connect(mapStateToProps, mapDispatchToProps)(ExpenseAUG);
