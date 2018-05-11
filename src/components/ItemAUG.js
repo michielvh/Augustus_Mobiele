@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, TouchableHighlight, View, Picker, Button } from 'react-native';
+import { Text, TextInput, TouchableHighlight, View, Picker, Button,ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { addItem, addItemToExpense } from '../redux/actions/expenseAUG';
 import { addBetaling } from '../redux/actions/expense';
@@ -19,6 +19,20 @@ class ItemAUG extends Component {
 
 
         };
+    }
+    componentDidMount(){
+        if(this.props.navigation.state.params.item){
+            var item=this.props.navigation.state.params.item;
+            
+                console.log('eee'); //werkt
+                this.setState({kostItemId: item.kostItemId});
+                this.setState({description: item.description});
+                this.setState({amount: item.amount.toString()});
+                this.setState({betaaldDoor: item.betaaldDoor});
+                this.setState({betaaldVoor: item.betaaldVoor});
+                this.setState({expenseID: item.expenseID});
+                this.setState({betaaldVoorPersonen: item.betaaldVoor});
+            }
     }
     verwijderPersoonVanBetalingen(e){
         var personen=this.state.betaaldVoorPersonen;
@@ -58,6 +72,7 @@ class ItemAUG extends Component {
         this.setState({ amount: newText })
     }
     additem() {
+        if(this.props.navigation.state.params.item){
         var personen2=[];
         if(this.state.betaaldVoor==='alle'){
             
@@ -70,6 +85,10 @@ class ItemAUG extends Component {
      //   this.props.onAddItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor, this.state.betaaldVoor,this.state.eventueelExpenseID);
 
         //  this.props.onAddItemToExpense(this.state.kostItemId,this.state.eventueelExpenseID);
+
+    }else{
+     //   this.props.onUpdateItem();//nog fixen
+    }
          this.props.navigation.goBack(null);
       
       //  this.props.navigation.dispatch(NavigationActions.back( key: this.props.navigation.state.params));
@@ -85,7 +104,7 @@ class ItemAUG extends Component {
        
 
         return (
-            <View><Text>Beschrijving item</Text>
+            <ScrollView><Text>Beschrijving item</Text>
                 <TextInput
                     onChangeText={(text) => this.setState({ description: text })}
                     value={this.state.description}
@@ -127,14 +146,14 @@ class ItemAUG extends Component {
         })}
                 <Button
                     onPress={() => this.additem()}
-                    title="Add Kost" />
+                    title="Add Kost" /*hier een if doen om te updaten of toe te voegen*//>
 
 
 
                 {/* <TouchableHighlight onPress={() => this.additem()}>
                     <Text>Add item</Text>
                 </TouchableHighlight> */}
-            </View>
+            </ScrollView>
         );
     }
 }

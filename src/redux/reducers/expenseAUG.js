@@ -1,10 +1,10 @@
 
  const init = {
-     expenses:[{
+     expenses:[/* {
     expenseID:'', description: 'drank dag2', amount: 5, datum:'datum',currency:'currencyID',categorie:'',
      items:[{ itemId:'id toevoegen aan expense in action en in app alle kostitemIDs ophalen en amounts optellen'},
     {itemId:'id'}]
-     }]
+     } */]
       
  }
 

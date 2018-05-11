@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  Text, TextInput, View, Button,Picker } from 'react-native';
+import {  Text, TextInput, View, Button,Picker,TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { createNewExpense } from '../redux/actions/expenseAUG';
 
@@ -13,7 +13,7 @@ amount : '',
 description:'',
 categorie:'Overige',
 date:today(new Date()),
-items:[1],
+items:[/*1*/],
 created: false,
          };
     }
@@ -59,7 +59,12 @@ created: false,
                }});
                return bedragsken;
     }
-    fixLijst(xoxo){
+
+    naarItem(item){
+        this.props.navigation.navigate('NewItem',  {item} );
+    }
+
+    fixLijst(xoxo,nav){
       return  this.props.items.map(function(key,val,array){
             if(key.expenseID){
                 if(key.expenseID===xoxo){
@@ -68,7 +73,9 @@ created: false,
                         //DIT IS OPLOSSING!!!
                         //CHECK OF EXPENSEID BESTAAT!!
                         //
-                        return <Text>{key.description} TouchableHighlight van maken,onpress terug naar edit met info ingeladen</Text>
+                        return <TouchableHighlight key={key.itemID} onPress={() => nav.navigate('NewItem',  {item:key} )}> 
+                            <Text>{key.description} TouchableHighlight van maken,onpress terug naar edit met info ingeladen</Text>
+                            </TouchableHighlight>
         
                 }    }//}
         
@@ -121,8 +128,8 @@ created: false,
                 
                 <Text>Currencylijst adden</Text>
                 <Text>Al afgerekend: {this.bereken2(this.state.expenseID)} </Text> 
-                <Text>Resterend:  </Text>
-                {this.fixLijst(this.state.expenseID) /*MOET IN APARTE FUNCTIONCALL,ZEGT ANDERS DAT STATEEXPENSE UNDEFINED IS=>ERROR*/}
+                <Text>Resterend: {double(this.state.amount) - this.bereken2(this.state.expenseID)} </Text>
+                {this.fixLijst(this.state.expenseID,this.props.navigation) /*MOET IN APARTE FUNCTIONCALL,ZEGT ANDERS DAT STATEEXPENSE UNDEFINED IS=>ERROR*/}
 
                 <Text>Omschrijving: </Text>
                <TextInput 
@@ -144,9 +151,9 @@ created: false,
             })}
                 </Picker>
 
-                <Button onPress={() => //this.props.navigation.navigate('NewExpense', { trip })} 
+                <Button  onPress={() => //this.props.navigation.navigate('NewExpense', { trip })} 
                this.createNewExpense() }
-                title='+'
+                title='+ onderverdeling'
                 navigation={this.props.navigation}/>
                
            </View>
@@ -190,3 +197,4 @@ created: false,
     
     return dd + '/' + mm + '/' + yyyy;
   } ;
+  const double=(x) => Number.parseFloat(x);
