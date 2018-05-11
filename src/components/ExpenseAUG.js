@@ -41,18 +41,20 @@ created: false,
        var xoxox=0;
        console.log(lala);
         for(let x of this.props.items){
+            //lala is tripObject, nog wegwerken!
             xoxox+=x.amount; //nog beter, net nog expenseID check toevoegen & check of items al bestaat
         }
        return xoxox;
     }
 //OF
-    bereken2(){
+    bereken2(expenseID){
           var bedragsken=0;
           this.props.items.map(function(key,val,array){
             //  var x=0;
                if(key.expenseID){  
+                   if(key.expenseID===expenseID){
                   bedragsken+= key.amount;
-                   
+                   }
    
                }});
                return bedragsken;
@@ -76,9 +78,24 @@ created: false,
              return x; */
             
          })}
-    
+        
+         componentDidMount(){
+             if(this.props.navigation.state.params.expense){
+            var expense=this.props.navigation.state.params.expense;
+            
+                console.log('eee'); //werkt
+                this.setState({expenseID: expense.expenseID});
+                this.setState({created: true});
+                this.setState({amount: expense.amount.toString()});
+                this.setState({items: expense.items});
+                this.setState({description: expense.description});
+                this.setState({date: expense.date});
+                this.setState({categorie: expense.categorie});
+            }
+         }
+
     render() {
-      
+    //  this.checkIfExpenseExists(this.props.navigation.state.params.expense);
     /*     var x=0;
         var xxx=this.props.items.map(function(key,val,array){
             
@@ -103,8 +120,8 @@ created: false,
                 />
                 
                 <Text>Currencylijst adden</Text>
-                <Text>Al afgerekend: {this.bereken2()} </Text> 
-                <Text>Resterend: {this.bereken( this.props.navigation.state.params)}</Text>
+                <Text>Al afgerekend: {this.bereken2(this.state.expenseID)} </Text> 
+                <Text>Resterend:  </Text>
                 {this.fixLijst(this.state.expenseID) /*MOET IN APARTE FUNCTIONCALL,ZEGT ANDERS DAT STATEEXPENSE UNDEFINED IS=>ERROR*/}
 
                 <Text>Omschrijving: </Text>

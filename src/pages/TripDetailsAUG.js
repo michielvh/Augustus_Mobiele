@@ -3,8 +3,31 @@ import { connect } from 'react-redux';
 import { ScrollView, Text, TouchableHighlight, Button } from 'react-native';
 
 class TripDetailsAUG extends Component {
-    
-    trips() {
+    constructor(props) {
+        super(props);
+        this.state = {
+           
+
+
+        };
+    }
+    expenses(trip,nav) {
+        console.log(this.props);
+        return  this.props.expenses.map(function(key){
+              if(trip.id===key.tripID){
+                 
+              return (
+                  <TouchableHighlight key={key.expenseID}
+                    onPress={() => nav.navigate('NewExpense', { expense:key,trip:trip })}
+                  >
+                    <Text > {key.description}</Text>
+                  </TouchableHighlight>
+               );
+              }
+          })
+        }
+
+   /*  trips() {
 
         const expensess = [];
         if (this.props.expenses!=null) {
@@ -17,24 +40,28 @@ class TripDetailsAUG extends Component {
             , this);
         }
         return Object.keys(expensess).map(key => expensess[key])
-      }   
+      }    
 fix(trip,n){
     this.props.navigation.navigate('NewExpense', { trip })
     navigation={n};
-}
+}*/
     render() {
         const trip = this.props.navigation.state.params.trip;
         console.log(trip);
         return (
             <ScrollView style={{ padding: 20 }}>
                 <Text>{trip.text}</Text>
-                { this.trips().map((expense) => {
+              {/*   { this.trips().map((expense) => {
                     return (
                         <TouchableHighlight onPress={() => this.onTripPress(trip)}>
                           <Text key={expense.id}> {expense.description}</Text>
                         </TouchableHighlight>
                     );   
                 })}
+ */}
+<Text >A list of all the expenses: </Text>
+      { this.expenses(trip,this.props.navigation)}
+
                 <Button 
                 //    onPress={() => this.fix(trip,this.props.navigation)} 
                     onPress={() => this.props.navigation.navigate('NewExpense', { trip })} 
@@ -47,9 +74,14 @@ fix(trip,n){
     }
 }
 
+
+
+  
+    
+  
 const mapStateToProps = (state) => {
     return {
-      expenses: state.expenses.expenses,
+      expenses: state.expenseAUG.expenses,
     };
 };
  

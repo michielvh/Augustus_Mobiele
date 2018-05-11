@@ -5,7 +5,7 @@
  
    const reducer = (state=init, action) => {
    switch(action.type) {
-     case 'ADD_ITEM':
+     case 'ADD_ITEMm':
      state.amount=state.amount+action.payload.amount;
          return {...state,
           item: [...state.item, action.payload]};
