@@ -25,7 +25,7 @@ export const addBetaling = (amount,naam) => {
 
 export const updateItem = (users) => {
     return {
-      type: 'UPDATE_ITEM',
+      type: 'UPDATE_ITEMe',
       payload: {
         
         

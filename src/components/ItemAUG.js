@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, TextInput, TouchableHighlight, View, Picker, Button,ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { addItem, addItemToExpense } from '../redux/actions/expenseAUG';
+import { addItem, addItemToExpense, updateItem } from '../redux/actions/expenseAUG';
 import { addBetaling } from '../redux/actions/expense';
 import { NavigationActions } from 'react-navigation';
 import PropTypes from 'prop-types';
@@ -20,12 +20,12 @@ class ItemAUG extends Component {
 
         };
     }
-    componentDidMount(){
+    componentWillMount(){
         if(this.props.navigation.state.params.item){
             var item=this.props.navigation.state.params.item;
             
                 console.log('eee'); //werkt
-                this.setState({kostItemId: item.kostItemId});
+                this.setState({kostItemId: item.itemID});
                 this.setState({description: item.description});
                 this.setState({amount: item.amount.toString()});
                 this.setState({betaaldDoor: item.betaaldDoor});
@@ -73,6 +73,9 @@ class ItemAUG extends Component {
     }
     additem() {
         if(this.props.navigation.state.params.item){
+            this.props.onUpdateItem(this.state.kostItemId,this.state.amount, this.state.description, this.state.betaaldDoor,this.state.betaaldVoorPersonen,this.state.expenseID);//nog fixen
+
+    }else{
         var personen2=[];
         if(this.state.betaaldVoor==='alle'){
             
@@ -86,8 +89,6 @@ class ItemAUG extends Component {
 
         //  this.props.onAddItemToExpense(this.state.kostItemId,this.state.eventueelExpenseID);
 
-    }else{
-     //   this.props.onUpdateItem();//nog fixen
     }
          this.props.navigation.goBack(null);
       
@@ -167,7 +168,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onAddItem: (kostItemId,amount, description, betaaldDoor, betaaldVoor,expenseID) => { dispatch(addItem(kostItemId,amount, description, betaaldDoor, betaaldVoor,expenseID)); },
-   
+        onUpdateItem:(kostItemId,amount, description, betaaldDoor,betaaldVoor,expenseID) => { dispatch(updateItem(kostItemId,amount, description, betaaldDoor, betaaldVoor,expenseID)); },
         onAddItemToExpense: (itemID,expenseID) => { dispatch(addItemToExpense(itemID,expenseID));}
     }
 }

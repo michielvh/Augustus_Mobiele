@@ -43,18 +43,22 @@ export const addBetaling = (amount,naam) => {
   };
 }
 
-
-export const updateItem = (users) => {
-    return {
-      type: 'UPDATE_ITEM',
-      payload: {
-        
-        
-        users
-        
-      }
-    };
+export const updateItem = (kostItemId,amount,description,betaaldDoor,betaaldVoor,expenseID) => {
+  return {
+    type: 'UPDATE_ITEM',
+    payload: {
+      
+      itemID:kostItemId,
+      amount:double(amount),  
+    description, 
+    betaaldDoor, 
+    betaaldVoor,
+  expenseID
+      
+    }
+  };
 }
+
 const int=(x) => Number.parseInt(x);
 const double=(x) => Number.parseFloat(x);
 const uid = () => Math.random().toString(34).slice(2);

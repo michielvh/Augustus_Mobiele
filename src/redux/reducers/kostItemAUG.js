@@ -14,12 +14,22 @@ const init = {
             items:[...state.items,action.payload]};
           
       case 'UPDATE_ITEM':
-          return state.map(t => {
-              if(t.get('id') === action.payload) {
-                  return t.update('isFinished', isFinished => !isFinished);
-                } 
-                return t;
-          });
+        
+
+          for(var x of state.items){
+            if(x.itemID===action.payload.itemID){
+              //state.items.pop(x)
+               // x.items.push(action.payload.itemID);
+               x.amount=action.payload.amount;
+               x.betaaldDoor=action.payload.betaaldDoor;
+               x.betaaldVoor=action.payload.betaaldVoor;
+               x.description=action.payload.description;
+            }
+        }
+        return {...state,
+            items: [...state.items]};
+
+
           case 'ADD_BETALING':
           state.amount=state.amount-action.payload.amount;
           return {...state,

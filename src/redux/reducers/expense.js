@@ -10,7 +10,7 @@
          return {...state,
           item: [...state.item, action.payload]};
          
-     case 'UPDATE_ITEM':
+     case 'UPDATE_ITEMe':
          return state.map(t => {
              if(t.get('id') === action.payload) {
                  return t.update('isFinished', isFinished => !isFinished);
