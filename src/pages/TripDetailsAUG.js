@@ -17,12 +17,19 @@ class TripDetailsAUG extends Component {
               if(trip.id===key.tripID){
                  
               return (
-                  <TouchableHighlight key={key.expenseID}
+                  <View key={key.expenseID}>
+                  <TouchableHighlight 
                     onPress={() => nav.navigate('EditExpense', { expense:key,trip:trip })}
                   >
                     <Text > {key.description} : {key.amount} flappe</Text>
                   </TouchableHighlight>
 
+<TouchableHighlight 
+onPress={() => nav.navigate('OverzichtExpense', { expense:key })}
+>
+<Text > Check Overview</Text>
+</TouchableHighlight>
+</View>
                );
                
               }
@@ -71,9 +78,9 @@ fix(trip,n){
                     title='New Expense'
                     navigation={this.props.navigation}
                 />
-                <View>
+        {/*         <View>
 <Totalen expense={this.props.expenses[0]}/>
-</View>
+</View> */}
             </ScrollView>
         );
     }

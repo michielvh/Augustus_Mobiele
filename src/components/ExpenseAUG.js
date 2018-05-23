@@ -170,6 +170,7 @@ created: false,
                this.updateExpense() }
                 title='rond rekening ad'
                 navigation={this.props.navigation}/>
+               {/*  <Totalen expense/> */}
            </View>
         );
     }

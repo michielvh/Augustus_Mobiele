@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, TouchableHighlight, View, Button } from 'react-native';
+import { Text, StyleSheet, TouchableHighlight, View, Button,FlatList,ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
  class Totalen extends Component {
@@ -45,7 +45,8 @@ var name='';
 var betaald=0;
 var owes=0;
 var lijst=[]
-
+/* var lll={naam: 'NAME',owesamount: 'OWES', paidamount: 'PAYED', total:'TOTAL'};
+    lijst.push(lll); */
 for(let e of betaaldMap){
     name=e[0];
     betaald=e[1];
@@ -72,7 +73,9 @@ for (var [key, value] of schuldMap) {
 for (var x of lijst){
     x.total=x.paidamount-x.owesamount;
 }
-//return lijst;
+var l=[{naam: 'NAME',owesamount: 'OWES', paidamount: 'PAYED', total:'TOTAL'}];
+return l.concat(lijst);
+//return l;
 console.log(lijst);
 
 
@@ -85,10 +88,28 @@ console.log(lijst);
     
       
     return (
-        <TouchableHighlight onPress={() => this.totalen(this.props.expense)}>
+<FlatList
+  data={this.totalen( this.props.navigation.state.params.expense)}
+  
+  renderItem={({item}) => 
+  <View style={{
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    }}>
+       <Text>{item.naam}</Text> 
+       <Text> {item.owesamount} </Text>
+       <Text>{item.paidamount}</Text> 
+  <Text> {item.total}</Text>
+  </View> }
+/>
+
+       
+  /*       <TouchableHighlight onPress={() => this.totalen(this.props.expense)}>
         <Text>check totalen</Text>
       </TouchableHighlight>
-    );
+    */ );
   }
 }
 

@@ -5,7 +5,7 @@ import BillForm from '../components/BillForm';
 import AddTrip from '../pages/AddTripPage';
 import ExpensePage from '../pages/ExpensePageAUG';
 import ItemAUG from '../components/ItemAUG';
-
+import Totalen from '../components/Totalen';
 
 
 const TripsNavigatorAUG = StackNavigator({
@@ -48,6 +48,12 @@ const TripsNavigatorAUG = StackNavigator({
         screen: ItemAUG,
         navigationOptions: {
             title: 'Edit Item',
+        },
+    },
+    OverzichtExpense: {
+        screen: Totalen,
+        navigationOptions: {
+            title: 'Overzicht Expense',
         },
     },
 });
