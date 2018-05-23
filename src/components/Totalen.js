@@ -21,6 +21,7 @@ import { connect } from 'react-redux';
             if(tripID===expense.tripID){
     
         items.forEach(function(e) {
+            if(e.expenseID===expense.expenseID){
             //checken of expenseID overeenkomt
            
     
@@ -42,7 +43,7 @@ import { connect } from 'react-redux';
                     schuldMap.set(persoon,e.amount/aantalPersonen);
                 }
             }
-         })
+             } })
         }})
     
     // totalen maken
