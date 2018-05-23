@@ -58,7 +58,7 @@ fix(trip,n){
         var trip = this.props.navigation.state.params.trip;
         console.log(trip);
         return (
-            <ScrollView style={{ padding: 20 }}>
+            <ScrollView style={{ padding: 20, flex:1 }}>
                 <Text>{trip.text}</Text>
               {/*   { this.trips().map((expense) => {
                     return (

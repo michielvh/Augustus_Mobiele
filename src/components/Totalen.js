@@ -192,10 +192,10 @@ return this.bereken(params);
     justifyContent: 'space-around',
     alignItems: 'center',
     }}>
-       <Text>{item.naam}</Text> 
-       <Text> {item.owesamount} </Text>
-       <Text>{item.paidamount}</Text> 
-  <Text> {item.total}</Text>
+       <Text style={{width:50}}>{item.naam}</Text> 
+       <Text style={{width:50}}> {item.owesamount} </Text>
+       <Text style={{width:50}}>{item.paidamount}</Text> 
+  <Text style={{width:50}}> {item.total}</Text>
   </View> }
 />
 
