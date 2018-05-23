@@ -55,7 +55,7 @@ fix(trip,n){
     navigation={n};
 }*/
     render() {
-        const trip = this.props.navigation.state.params.trip;
+        var trip = this.props.navigation.state.params.trip;
         console.log(trip);
         return (
             <ScrollView style={{ padding: 20 }}>
@@ -78,9 +78,9 @@ fix(trip,n){
                     title='New Expense'
                     navigation={this.props.navigation}
                 />
-        {/*         <View>
-<Totalen expense={this.props.expenses[0]}/>
-</View> */}
+                
+<Totalen trip={trip}/>
+
             </ScrollView>
         );
     }
