@@ -100,9 +100,9 @@ bereken(expense){
 
 //map vullen wie betaald heeft
         if(betaaldMap.has(e.betaaldDoor)){
-            betaaldMap.set(e.betaaldDoor,(betaaldMap.get(e.betaaldDoor)+convertMetBedrag(expense.currency,e.amount)));
+            betaaldMap.set(e.betaaldDoor,(betaaldMap.get(e.betaaldDoor)+e.amount));
         }else{
-            betaaldMap.set(e.betaaldDoor,convertMetBedrag(expense.currency,e.amount));
+            betaaldMap.set(e.betaaldDoor,e.amount);
         }
 
  //map vullen hoeveel ieder moet       
@@ -110,9 +110,9 @@ bereken(expense){
 
         for(var persoon of e.betaaldVoor){
             if(schuldMap.has(persoon)){
-                schuldMap.set(persoon,(schuldMap.get(persoon)+convertMetBedrag(expense.currency,e.amount)/aantalPersonen));
+                schuldMap.set(persoon,(schuldMap.get(persoon)+e.amount/aantalPersonen));
             }else{
-                schuldMap.set(persoon,convertMetBedrag(expense.currency,e.amount)/aantalPersonen);
+                schuldMap.set(persoon,e.amount/aantalPersonen);
             }
         }
      } })

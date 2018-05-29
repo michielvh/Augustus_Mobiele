@@ -21,7 +21,7 @@ class TripDetailsAUG extends Component {
                   <TouchableHighlight 
                     onPress={() => nav.navigate('EditExpense', { expense:key,trip:trip })}
                   >
-                    <Text > {key.description} : {key.amount} flappe</Text>
+                    <Text > {key.description} : {key.amount} {key.currency}</Text>
                   </TouchableHighlight>
 
 <TouchableHighlight 
