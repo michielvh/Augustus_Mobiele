@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, TouchableHighlight, View, Button,FlatList,ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-
+import {convertMetBedrag} from '../redux/reducers/currenciesAUG'
  class Totalen extends Component {
     constructor(props) {
         super(props);
@@ -28,9 +28,9 @@ import { connect } from 'react-redux';
     
     //map vullen wie betaald heeft
             if(betaaldMap.has(e.betaaldDoor)){
-                betaaldMap.set(e.betaaldDoor,(betaaldMap.get(e.betaaldDoor)+e.amount));
+                betaaldMap.set(e.betaaldDoor,(betaaldMap.get(e.betaaldDoor)+convertMetBedrag(expense.currency,e.amount)));
             }else{
-                betaaldMap.set(e.betaaldDoor,e.amount);
+                betaaldMap.set(e.betaaldDoor,convertMetBedrag(expense.currency,e.amount));
             }
     
      //map vullen hoeveel ieder moet       
@@ -38,9 +38,9 @@ import { connect } from 'react-redux';
     
             for(var persoon of e.betaaldVoor){
                 if(schuldMap.has(persoon)){
-                    schuldMap.set(persoon,(schuldMap.get(persoon)+e.amount/aantalPersonen));
+                    schuldMap.set(persoon,(schuldMap.get(persoon)+convertMetBedrag(expense.currency,e.amount)/aantalPersonen));
                 }else{
-                    schuldMap.set(persoon,e.amount/aantalPersonen);
+                    schuldMap.set(persoon,convertMetBedrag(expense.currency,e.amount)/aantalPersonen);
                 }
             }
              } })
@@ -100,9 +100,9 @@ bereken(expense){
 
 //map vullen wie betaald heeft
         if(betaaldMap.has(e.betaaldDoor)){
-            betaaldMap.set(e.betaaldDoor,(betaaldMap.get(e.betaaldDoor)+e.amount));
+            betaaldMap.set(e.betaaldDoor,(betaaldMap.get(e.betaaldDoor)+convertMetBedrag(expense.currency,e.amount)));
         }else{
-            betaaldMap.set(e.betaaldDoor,e.amount);
+            betaaldMap.set(e.betaaldDoor,convertMetBedrag(expense.currency,e.amount));
         }
 
  //map vullen hoeveel ieder moet       
@@ -110,9 +110,9 @@ bereken(expense){
 
         for(var persoon of e.betaaldVoor){
             if(schuldMap.has(persoon)){
-                schuldMap.set(persoon,(schuldMap.get(persoon)+e.amount/aantalPersonen));
+                schuldMap.set(persoon,(schuldMap.get(persoon)+convertMetBedrag(expense.currency,e.amount)/aantalPersonen));
             }else{
-                schuldMap.set(persoon,e.amount/aantalPersonen);
+                schuldMap.set(persoon,convertMetBedrag(expense.currency,e.amount)/aantalPersonen);
             }
         }
      } })

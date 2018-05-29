@@ -33,7 +33,7 @@ export function getCurrencyLijstToMap(){
         }
       });
       console.log(ratio);
-      let convertBedrag=bedrag*ratio;
+      let convertBedrag=bedrag/ratio;
       return convertBedrag;
   }
  

@@ -23,11 +23,11 @@ export const addItemToExpense = (itemID,expenseID) => {
       }
     };
 }
-export const createNewExpense = (expenseID,amount,description,tripID,categorie,date,items) => {
+export const createNewExpense = (expenseID,amount,description,tripID,categorie,date,items,currency) => {
     return {
       type: 'CREATE_NEW_EXPENSE',
       payload: {
-        expenseID ,amount : double(amount),description,tripID,categorie,date,items
+        expenseID ,amount : double(amount),description,tripID,categorie,date,items,currency
       }
     };
 }
@@ -59,11 +59,11 @@ export const updateItem = (kostItemId,amount,description,betaaldDoor,betaaldVoor
   };
 }
 
-export const updateExpense = (expenseID,amount,description,tripID,categorie,date,items) => {
+export const updateExpense = (expenseID,amount,description,tripID,categorie,date,items,currency) => {
   return {
     type: 'UPDATE_EXPENSE',
     payload: {
-      expenseID ,amount : double(amount),description,tripID,categorie,date,items
+      expenseID ,amount : double(amount),description,tripID,categorie,date,items,currency
     }
   };
 }

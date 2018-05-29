@@ -15,7 +15,7 @@ categorie:'Overige',
 date:today(new Date()),
 items:[/*1*/],
 created: false,
-currency:''
+currency:this.props.navigation.state.params.trip.currency
          };
     }
     onChange(text) {
@@ -31,7 +31,7 @@ currency:''
     }
     updateExpense(){
         if(this.props.navigation.state.params.expense){
-            this.props.onUpdateExpense(this.state.expenseID,this.state.amount,this.state.description,this.props.navigation.state.params.trip.id,this.state.categorie,this.state.date,this.state.items);
+            this.props.onUpdateExpense(this.state.expenseID,this.state.amount,this.state.description,this.props.navigation.state.params.trip.id,this.state.categorie,this.state.date,this.state.items,this.state.currency);
 
         }
         if(this.state.created===true){
@@ -42,7 +42,7 @@ currency:''
 
     createNewExpense(){
        if(this.state.created===false){ 
-        this.props.onAddExpense(this.state.expenseID,this.state.amount,this.state.description,this.props.navigation.state.params.trip.id,this.state.categorie,this.state.date,this.state.items);
+        this.props.onAddExpense(this.state.expenseID,this.state.amount,this.state.description,this.props.navigation.state.params.trip.id,this.state.categorie,this.state.date,this.state.items,this.state.currency);
        
                }        this.setState({created: true});
         this.props.navigation.navigate('NewItem',  this.state.expenseID );
@@ -109,6 +109,8 @@ currency:''
                 this.setState({description: expense.description});
                 this.setState({date: expense.date});
                 this.setState({categorie: expense.categorie});
+                this.setState({currency: expense.currency});
+
                // this.props.screenProps.setTitle('Dashboard');
             }
          }
@@ -137,6 +139,7 @@ currency:''
                   onChangeText={(text) => this.onChange(text)}
                   value={this.state.amount} //NAAR props.amount veranderen?
                 />
+                <Text>Currency:</Text>
                 <Picker selectedValue={this.state.currency}
                     onValueChange={(itemValue, itemIndex) => this.setState({currency: itemValue })}>
  {this.props.navigation.state.params.trip.currencies.map((currency)=>{
@@ -145,7 +148,7 @@ currency:''
             
         return  <Picker.Item key={currency} label={currency} value={currency} />})}
                     </Picker>
-                <Text>Currencylijst adden</Text>
+                
                 <Text>Al afgerekend: {this.bereken2(this.state.expenseID)} </Text> 
                 <Text>Resterend: {double(this.state.amount) - this.bereken2(this.state.expenseID)} </Text>
                 {this.fixLijst(this.state.expenseID,this.props.navigation) /*MOET IN APARTE FUNCTIONCALL,ZEGT ANDERS DAT STATEEXPENSE UNDEFINED IS=>ERROR*/}
@@ -197,9 +200,9 @@ currency:''
  
   const mapDispatchToProps = (dispatch) => {
       return {
-          onAddExpense: (expenseID,amount,description,tripID,categorie,date,items) => { dispatch(createNewExpense(expenseID,amount,description,tripID,categorie,date,items)); },
+          onAddExpense: (expenseID,amount,description,tripID,categorie,date,items,currency) => { dispatch(createNewExpense(expenseID,amount,description,tripID,categorie,date,items,currency)); },
           onAddExpenseObject: (expense,tripID) => { dispatch(addExpenseObject(expense,tripID)); },
-          onUpdateExpense: (expenseID,amount,description,tripID,categorie,date,items) => { dispatch(updateExpense(expenseID,amount,description,tripID,categorie,date,items)); },
+          onUpdateExpense: (expenseID,amount,description,tripID,categorie,date,items,currency) => { dispatch(updateExpense(expenseID,amount,description,tripID,categorie,date,items,currency)); },
 
     };
   };

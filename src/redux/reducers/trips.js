@@ -2,7 +2,7 @@ import { List, Map } from 'immutable';
 
  const init = {
    
-  trips: [{ id: 'eeer', isFinished: true,  text: 'Bahamas',currency:'EUR' }]
+  trips: [{ id: 'eeer', isFinished: true,  text: 'Bahamas',currency:'EUR', currencies:['EUR','USD']}]
  }
 
   const reducer = (state=init, action) => {

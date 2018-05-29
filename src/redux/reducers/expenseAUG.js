@@ -79,6 +79,7 @@
                 x.categorie=action.payload.categorie;
                 x.items=action.payload.items;
                 x.description=action.payload.description;
+                x.currency=action.payload.currency;
              }
          }
          return {...state,
