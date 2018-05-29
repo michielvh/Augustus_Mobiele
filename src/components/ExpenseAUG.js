@@ -15,6 +15,7 @@ categorie:'Overige',
 date:today(new Date()),
 items:[/*1*/],
 created: false,
+currency:''
          };
     }
     onChange(text) {
@@ -136,7 +137,14 @@ created: false,
                   onChangeText={(text) => this.onChange(text)}
                   value={this.state.amount} //NAAR props.amount veranderen?
                 />
-                
+                <Picker selectedValue={this.state.currency}
+                    onValueChange={(itemValue, itemIndex) => this.setState({currency: itemValue })}>
+ {this.props.navigation.state.params.trip.currencies.map((currency)=>{
+        
+    
+            
+        return  <Picker.Item key={currency} label={currency} value={currency} />})}
+                    </Picker>
                 <Text>Currencylijst adden</Text>
                 <Text>Al afgerekend: {this.bereken2(this.state.expenseID)} </Text> 
                 <Text>Resterend: {double(this.state.amount) - this.bereken2(this.state.expenseID)} </Text>
@@ -183,7 +191,7 @@ created: false,
       categories: state.categories.categories,
       expenses: state.expenseAUG.expenses,
         items: state.kostItemAUG.items,
-      //trips: state.trips.trips
+      trips: state.trips.trips
     };
   };
  

@@ -6,6 +6,13 @@ const rates={'EUR':1,'AUD':1.5543,"BGN":1.9558,"BRL":4.317,"CAD":1.5066,"CHF":1.
       return Object.keys(rates);
   }
 
+  export function getCurrencyLijstEntries(){
+   return Object.entries(rates);
+}
+
+export function getCurrencyLijstToMap(){
+  return new Map(Object.entries(rates));
+}
 
   export function convert(currency){
     let ratio=0;

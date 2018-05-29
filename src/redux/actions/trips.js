@@ -1,12 +1,14 @@
-export const addTrip = (textt) => {
-    return {
-      type: 'ADD_TRIP',
-      payload: {
-        id: uid(),
-        isFinished: false,
-        text: textt
-      }
-    };
+export const addTrip = (textt,currency,currencies) => {
+  return {
+    type: 'ADD_TRIP',
+    payload: {
+      id: uid(),
+      isFinished: false,
+      text: textt,
+      currency,
+      currencies
+    }
+  };
 }
 
 export function finishTrip(id) {
