@@ -1,11 +1,13 @@
 
  const init = {
-     expenses:[/* {
+     expenses:[{expenseID:'eee', amount:500, currency:'EUR', date:'08/06/2018', description:'eten dag 1', tripID:'eeer', categorie:'Overige', items:['itemeee1','itemeee2']},
+     {expenseID:'aaa', amount:700, currency:'USD', date:'08/06/2018', description:'eten dag 2', tripID:'eeer', categorie:'Overige', items:['itemaaa1','itemaaa2']}
+
+         /* {
     expenseID:'', description: 'drank dag2', amount: 5, datum:'datum',currency:'currencyID',categorie:'',
      items:[{ itemId:'id toevoegen aan expense in action en in app alle kostitemIDs ophalen en amounts optellen'},
     {itemId:'id'}]
      } */]
-      
  }
 
   const reducer = (state=init, action) => {

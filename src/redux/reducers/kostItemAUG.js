@@ -1,6 +1,12 @@
 const init = {
     
-   items:[/* {  itemID:0,
+   items:[{itemID:'itemeee1', amount:50,expenseID:'eee',description:'item1',betaaldDoor:'jan',betaaldVoor:['jan','loe','fred']},
+   {itemID:'itemeee2', amount:450,expenseID:'eee',description:'item2',betaaldDoor:'fred',betaaldVoor:['jan','loe','fred','barry']},
+   {itemID:'itemaaa1', amount:370,expenseID:'aaa',description:'item3',betaaldDoor:'loe',betaaldVoor:['jan','loe','fred','barry']},
+   {itemID:'itemaaa2', amount:330,expenseID:'aaa',description:'item4',betaaldDoor:'barry',betaaldVoor:['jan','loe','fred','barry']}
+     
+    
+    /* {  itemID:0,
       amount:1,  description: 'drank dag 1', betaaldDoor:'jan/ofID', betaaldVoor:[{persoon:'jan/id'},{persoon:'naam/id'}],
     expenseID:'en dan '} */]
       

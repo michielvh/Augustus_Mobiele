@@ -15,7 +15,8 @@ categorie:'Overige',
 date:today(new Date()),
 items:[/*1*/],
 created: false,
-currency:this.props.navigation.state.params.trip.currency
+currency:this.props.navigation.state.params.trip.currency,
+resterend:false
          };
     }
     onChange(text) {
@@ -30,14 +31,17 @@ currency:this.props.navigation.state.params.trip.currency
         this.setState({ amount: newText })
     }
     updateExpense(){
+        if(this.state.resterend===false){
+           
         if(this.props.navigation.state.params.expense){
             this.props.onUpdateExpense(this.state.expenseID,this.state.amount,this.state.description,this.props.navigation.state.params.trip.id,this.state.categorie,this.state.date,this.state.items,this.state.currency);
 
         }
+        this.setState({resterend: false});
         if(this.state.created===true){
             this.props.navigation.goBack(null);
         }
-       
+    }
     }
 
     createNewExpense(){
@@ -68,6 +72,7 @@ currency:this.props.navigation.state.params.trip.currency
                    }
    
                }});
+             
                return bedragsken;
     }
 
@@ -114,7 +119,25 @@ currency:this.props.navigation.state.params.trip.currency
                // this.props.screenProps.setTitle('Dashboard');
             }
          }
+ componentWillReceiveProps(){
+    if((double(this.state.amount)-this.bereken2(this.state.expenseID))>0){
+        this.setState({resterend:true});
+ }else{
+    this.setState({resterend:false});
+ }
+} 
 
+         getTextStyle() {
+            if(this.state.resterend===true) {
+             return {
+               height: 40, backgroundColor: 'white', borderRadius: 5, padding: 10, borderWidth: 2, borderColor: 'red'
+             }
+            } else {
+              return {
+                 height: 40, backgroundColor: 'white', borderRadius: 5, padding: 10
+              }
+            }
+           }
     render() {
     //  this.checkIfExpenseExists(this.props.navigation.state.params.expense);
     /*     var x=0;
@@ -150,7 +173,7 @@ currency:this.props.navigation.state.params.trip.currency
                     </Picker>
                 
                 <Text>Al afgerekend: {this.bereken2(this.state.expenseID)} </Text> 
-                <Text>Resterend: {double(this.state.amount) - this.bereken2(this.state.expenseID)} </Text>
+                <Text style={this.getTextStyle()}>Resterend: {double(this.state.amount) - this.bereken2(this.state.expenseID)} </Text>
                 {this.fixLijst(this.state.expenseID,this.props.navigation) /*MOET IN APARTE FUNCTIONCALL,ZEGT ANDERS DAT STATEEXPENSE UNDEFINED IS=>ERROR*/}
 
                 <Text>Omschrijving: </Text>
@@ -179,7 +202,7 @@ currency:this.props.navigation.state.params.trip.currency
                 navigation={this.props.navigation}/>
                <Button  onPress={() => //this.props.navigation.navigate('NewExpense', { trip })} 
                this.updateExpense() }
-                title='rond rekening ad'
+                title='rond rekening af'
                 navigation={this.props.navigation}/>
                {/*  <Totalen expense/> */}
            </View>

@@ -77,8 +77,13 @@ import {convertMetBedrag} from '../redux/reducers/currenciesAUG'
     }
     //totaalberekening
     for (var x of lijst){
+        
         x.total=x.paidamount-x.owesamount;
-    }
+        x.paidamount=parseFloat(x.paidamount.toFixed(2));
+    x.owesamount=parseFloat(x.owesamount.toFixed(2));
+    x.total=parseFloat(x.total.toFixed(2));
+        //x.total.toFixe
+        }
     var l=[{naam: 'NAME',owesamount: 'OWES', paidamount: 'PAYED', total:'TOTAL'}];
     return l.concat(lijst);
     }
@@ -149,6 +154,9 @@ for (var [key, value] of schuldMap) {
 //totaalberekening
 for (var x of lijst){
     x.total=x.paidamount-x.owesamount;
+    x.paidamount=parseFloat(x.paidamount.toFixed(2));
+    x.owesamount=parseFloat(x.owesamount.toFixed(2));
+    x.total=parseFloat(x.total.toFixed(2));
 }
 var l=[{naam: 'NAME',owesamount: 'OWES', paidamount: 'PAYED', total:'TOTAL'}];
 return l.concat(lijst);
