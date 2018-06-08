@@ -31,13 +31,13 @@ resterend:false
         this.setState({ amount: newText })
     }
     updateExpense(){
-        if(this.state.resterend===false){
+        if(this.lala()===false){
            
         if(this.props.navigation.state.params.expense){
             this.props.onUpdateExpense(this.state.expenseID,this.state.amount,this.state.description,this.props.navigation.state.params.trip.id,this.state.categorie,this.state.date,this.state.items,this.state.currency);
 
         }
-        this.setState({resterend: false});
+       // this.setState({resterend: false});
         if(this.state.created===true){
             this.props.navigation.goBack(null);
         }
@@ -45,10 +45,10 @@ resterend:false
     }
 
     createNewExpense(){
-       if(this.state.created===false){ 
+        if(this.state.created===false){ 
         this.props.onAddExpense(this.state.expenseID,this.state.amount,this.state.description,this.props.navigation.state.params.trip.id,this.state.categorie,this.state.date,this.state.items,this.state.currency);
        
-               }        this.setState({created: true});
+               }        this.setState({created: true}); 
         this.props.navigation.navigate('NewItem',  this.state.expenseID );
     }
 
@@ -64,7 +64,8 @@ resterend:false
 //OF
     bereken2(expenseID){
           var bedragsken=0;
-          this.props.items.map(function(key,val,array){
+         this.props.items.map(function(key,val,array){
+        //  this.state.items.map(function(key,val,array){
             //  var x=0;
                if(key.expenseID){  
                    if(key.expenseID===expenseID){
@@ -116,19 +117,30 @@ resterend:false
                 this.setState({categorie: expense.categorie});
                 this.setState({currency: expense.currency});
 
+              
+
                // this.props.screenProps.setTitle('Dashboard');
-            }
+            }else{
+               /*  if(this.state.created===false){ 
+                    this.props.onAddExpense(this.state.expenseID,this.state.amount,this.state.description,this.props.navigation.state.params.trip.id,this.state.categorie,this.state.date,this.state.items,this.state.currency);
+                   
+                           }        this.setState({created: true});
+            */ }
          }
- componentWillReceiveProps(){
+ lala(){
     if((double(this.state.amount)-this.bereken2(this.state.expenseID))>0){
-        this.setState({resterend:true});
+//this.setState({resterend:true});
+       return true;
  }else{
-    this.setState({resterend:false});
+  //  this.setState({resterend:false});
+
+  return false ;
  }
 } 
 
-         getTextStyle() {
-            if(this.state.resterend===true) {
+         getTextStyle(expenseID) {
+            
+            if(this.lala()===true) {
              return {
                height: 40, backgroundColor: 'white', borderRadius: 5, padding: 10, borderWidth: 2, borderColor: 'red'
              }
@@ -152,7 +164,7 @@ resterend:false
         // console.log(xxx);
         console.log(this.props.navigation.state.params);
         console.log(this.props.categories);
-        console.log(this.state.categorie);
+        console.log(this.props.items);
         console.log(this.state.date);
         console.log(this.state.expenseID); //werkt
       //  console.log(this.props.navigation.state.params.trip.id);
@@ -173,7 +185,7 @@ resterend:false
                     </Picker>
                 
                 <Text>Al afgerekend: {this.bereken2(this.state.expenseID)} </Text> 
-                <Text style={this.getTextStyle()}>Resterend: {double(this.state.amount) - this.bereken2(this.state.expenseID)} </Text>
+                <Text style={this.getTextStyle(this.state.expenseID)}>Resterend: {double(this.state.amount) - this.bereken2(this.state.expenseID)} </Text>
                 {this.fixLijst(this.state.expenseID,this.props.navigation) /*MOET IN APARTE FUNCTIONCALL,ZEGT ANDERS DAT STATEEXPENSE UNDEFINED IS=>ERROR*/}
 
                 <Text>Omschrijving: </Text>
