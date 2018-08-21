@@ -59,7 +59,7 @@ fix(trip,n){
         console.log(trip);
         return (
             <ScrollView style={{ padding: 20, flex:1 }}>
-                <Text>{trip.text}</Text>
+                <Text style={{textAlign:'center',fontWeight:'bold',textDecorationLine:'underline',fontSize:16}}>{trip.text}</Text>
               {/*   { this.trips().map((expense) => {
                     return (
                         <TouchableHighlight onPress={() => this.onTripPress(trip)}>
@@ -68,7 +68,7 @@ fix(trip,n){
                     );   
                 })}
  */}
-<Text >A list of all the expenses: </Text>
+<Text style={{textAlign:'center',textDecorationLine:'underline'}} >A list of all the expenses: </Text>
       { this.expenses(trip,this.props.navigation)}
 
                 <Button 
