@@ -169,12 +169,14 @@ resterend:false
         console.log(this.state.expenseID); //werkt
       //  console.log(this.props.navigation.state.params.trip.id);
         return (
-            <View><Text>Totaal Bedrag: </Text>
+            <View><Text style={{textAlign:'center',textDecorationLine:'underline'}}>Totaal Bedrag: </Text>
                <TextInput 
                   onChangeText={(text) => this.onChange(text)}
                   value={this.state.amount} //NAAR props.amount veranderen?
                 />
-                <Text>Currency:</Text>
+                <Text style={{textAlign:'center',textDecorationLine:'underline'}}>Currency:</Text>
+                <View style={{borderRadius: 10,borderWidth:1 ,borderColor:'#bdc3c7', overflow: 'hidden'}}>
+
                 <Picker selectedValue={this.state.currency}
                     onValueChange={(itemValue, itemIndex) => this.setState({currency: itemValue })}>
  {this.props.navigation.state.params.trip.currencies.map((currency)=>{
@@ -183,16 +185,19 @@ resterend:false
             
         return  <Picker.Item key={currency} label={currency} value={currency} />})}
                     </Picker>
-                
-                <Text>Al afgerekend: {this.bereken2(this.state.expenseID)} </Text> 
+                </View>
+                <Text style={{textAlign:'center',textDecorationLine:'underline'}}>Al afgerekend: {this.bereken2(this.state.expenseID)} </Text> 
                 <Text style={this.getTextStyle(this.state.expenseID)}>Resterend: {double(this.state.amount) - this.bereken2(this.state.expenseID)} </Text>
                 {this.fixLijst(this.state.expenseID,this.props.navigation) /*MOET IN APARTE FUNCTIONCALL,ZEGT ANDERS DAT STATEEXPENSE UNDEFINED IS=>ERROR*/}
 
-                <Text>Omschrijving: </Text>
+                <Text style={{textAlign:'center',textDecorationLine:'underline'}}>Omschrijving: </Text>
                <TextInput 
                   onChangeText={(text) => this.setState({ description:text})}
                   value={this.state.description} //NAAR props.amount veranderen?
                 />
+     <Text style={{textAlign:'center',textDecorationLine:'underline'}}>Categorie: </Text>
+     <View style={{borderRadius: 10,borderWidth:1 ,borderColor:'#bdc3c7', overflow: 'hidden'}}>
+
  <Picker
                     selectedValue={this.state.categorie}
                     onValueChange={(itemValue, itemIndex) => this.setState({categorie: itemValue })}>
@@ -207,6 +212,7 @@ resterend:false
     
             })}
                 </Picker>
+                </View>
 
                 <Button  onPress={() => //this.props.navigation.navigate('NewExpense', { trip })} 
                this.createNewExpense() }

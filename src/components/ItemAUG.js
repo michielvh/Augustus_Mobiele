@@ -107,31 +107,35 @@ class ItemAUG extends Component {
        
 
         return (
-            <ScrollView><Text>Beschrijving item</Text>
+            <ScrollView><Text style={{textAlign:'center',textDecorationLine:'underline'}}>Beschrijving item</Text>
                 <TextInput
                     onChangeText={(text) => this.setState({ description: text })}
                     value={this.state.description}
                 />
-                <Text>Kostprijs item</Text>
+                <Text style={{textAlign:'center',textDecorationLine:'underline'}}>Kostprijs item</Text>
                 <TextInput
                     onChangeText={(text) => this.onChange(text)}
                     value={this.state.amount}
                 />
-                <Text>betaald door:</Text>
+                <Text style={{textAlign:'center',textDecorationLine:'underline'}}>betaald door:</Text>
+                <View style={{borderRadius: 10,borderWidth:1 ,borderColor:'#bdc3c7', overflow: 'hidden'}}>
+
                 <Picker
                     selectedValue={this.state.betaaldDoor}
                     onValueChange={(itemValue, itemIndex) => this.setState({ betaaldDoor: itemValue })}>
 
                     {this.personen().map((personen) => { return <Picker.Item key={personen.naam} label={personen.naam} value={personen.naam} /> })}
                 </Picker>
-
-                <Text> betaald voor:</Text>
-                <Picker
+</View>
+                <Text style={{textAlign:'center',textDecorationLine:'underline'}}> betaald voor:</Text>
+                <View style={{borderRadius: 10,borderWidth:1 ,borderColor:'#bdc3c7', overflow: 'hidden'}}>
+                <Picker 
                     selectedValue={this.state.betaaldVoor}
                     onValueChange={(itemValue, itemIndex) => this.betalingVoorPersonen( itemValue )}>
                     <Picker.Item label="Alle" value="alle" />
                     {this.personen().map((personen) => { return <Picker.Item key={personen.naam} label={personen.naam} value={personen.naam} /> })}
                 </Picker>
+                </View>
                 {/* <Picker
                     selectedValue={this.state.betaaldVoor}
                     onValueChange={(itemValue, itemIndex) => this.setState({ betaaldVoor: itemValue })}>
@@ -141,7 +145,7 @@ class ItemAUG extends Component {
         {this.state.betaaldVoorPersonen.map(e =>{
             
         return ( <TouchableHighlight key={e} onPress={() => this.verwijderPersoonVanBetalingen(e)}>
-<Text>{e}                  - verwijder -</Text>
+<Text style={{textAlign:'center'}}>{e}                  - verwijder -</Text>
       </TouchableHighlight>
          );
             

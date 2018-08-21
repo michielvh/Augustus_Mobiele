@@ -18,13 +18,13 @@ import { connect } from 'react-redux';
       
     return (
       <View>
-       <Text style={styles.titleText} >A list of all the trips: </Text>
+       <Text style={{textAlign:'center',fontWeight:'bold',textDecorationLine:'underline',fontSize:20}} >A list of all the trips: </Text>
         { this.trips().map((trip) => {
           return (
-            <TouchableHighlight key={trip.id}
+            <TouchableHighlight key={trip.id} 
               onPress={() => this.props.navigation.navigate('TripDetails', { trip })}
             >
-              <Text > {trip.text}</Text>
+              <Text style={{padding:15,textAlign:'center'}} > {trip.text}</Text>
             </TouchableHighlight>
          );
         })}
