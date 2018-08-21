@@ -17,14 +17,14 @@ class TripDetailsAUG extends Component {
               if(trip.id===key.tripID){
                  
               return (
-                  <View key={key.expenseID}>
-                  <TouchableHighlight 
+                  <View key={key.expenseID} style={{flexDirection:'row',alignItems: 'center', justifyContent:'center'}}>
+                  <TouchableHighlight style={{padding:20,height:20}}
                     onPress={() => nav.navigate('EditExpense', { expense:key,trip:trip })}
                   >
                     <Text > {key.description} : {key.amount} {key.currency}</Text>
                   </TouchableHighlight>
 
-<TouchableHighlight 
+<TouchableHighlight style={{padding:20,height:20}}
 onPress={() => nav.navigate('OverzichtExpense', { expense:key })}
 >
 <Text > Check Overview</Text>
@@ -87,8 +87,17 @@ fix(trip,n){
 }
 
 
-
-  
+/* const styles = StyleSheet.create({
+    bigblue: {
+      color: 'blue',
+      fontWeight: 'bold',
+      fontSize: 30,
+    },
+    red: {
+      color: 'red',
+    },
+  });
+   */
     
   
 const mapStateToProps = (state) => {

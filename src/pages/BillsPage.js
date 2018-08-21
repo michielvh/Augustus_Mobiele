@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
-import Bills from '../components/BillList';
+import TripTabNavAUG from '../navigators/TripTabNavAUG';
 
 class BillsPage extends Component {
     
     render() {
         return (
             <ScrollView>
-                <Bills />
+                <TripTabNavAUG />
             </ScrollView>
         );
     }

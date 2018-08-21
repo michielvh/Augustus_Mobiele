@@ -5,23 +5,18 @@ import TripStack from './TripsNavigator';
 import ExpensePage from '../pages/ExpensePageAUG';
 import TripStackAUG from './TripsNavigatorAUG';
 
-const MainNavigator = TabNavigator({
+const TripTabNavAUG = TabNavigator({
         Overview: {
             screen: OverviewPage
          },
-        /* Trips: {
-            screen: TripStack
-        }, */ 
-        Bills: {
-            screen: BillsPage
-        },
-       /*  ExpensePage: {
-            screen: ExpensePage
-        }, */
-        TripStackAUG: {
+      /*  Trips: {
             screen: TripStackAUG
-        },
+        }, 
+         Bills: {
+            screen: BillsPage
+        } */
+      
 
 });
 
-export default MainNavigator;
+export default TripTabNavAUG;
